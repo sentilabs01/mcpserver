@@ -4,7 +4,7 @@ export const ServerLogTicker: React.FC = () => {
   const [logs, setLogs] = useState<string[]>([]);
 
   useEffect(() => {
-    const apiBase = (import.meta.env.VITE_MCP_API as string) || 'http://localhost:3002';
+    const apiBase = ((import.meta.env.VITE_BACKEND_URL as string) || 'http://localhost:3001').trim();
     const source = new EventSource(`${apiBase}/api/server-logs`);
     source.onmessage = (e) => {
       try {

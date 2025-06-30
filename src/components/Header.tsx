@@ -10,7 +10,7 @@ export const Header: React.FC<{
   const [serverOnline, setServerOnline] = useState(true);
 
   useEffect(() => {
-    const apiBase = import.meta.env.VITE_MCP_API || '';
+    const apiBase = ((import.meta.env.VITE_BACKEND_URL as string) || 'http://localhost:3001').trim();
     const checkHealth = () => {
       fetch(`${apiBase}/api/health`)
         .then(res => res.ok ? setServerOnline(true) : setServerOnline(false))
